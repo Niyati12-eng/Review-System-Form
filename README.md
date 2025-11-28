@@ -8,18 +8,18 @@ Add review with:
 - Username
 - Comment
 - Rating (1–5)
+
+  Stores data in localStorage (no backend required)
   
-- Stores data in localStorage (no backend required)
-  
-- Displays:
+Displays:
 - Username
 - Rating
 - Comment
   
-- Time of submission
-- Automatically loads all previous reviews on page load
-- Clean two-column layout
-- Scrollable review box
+Time of submission
+Automatically loads all previous reviews on page load
+Clean two-column layout
+Scrollable review box
 
 **How It Works**
 
