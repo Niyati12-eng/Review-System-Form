@@ -9,7 +9,7 @@ Add review with:
 - Comment
 - Rating (1–5)
 
-  Stores data in localStorage (no backend required)
+Stores data in localStorage (no backend required)
   
 Displays:
 - Username
