@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review System</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .review-form {
+        width: 45%;
+    }
+
+    .reviews-box {
+        width: 45%;
+        height: 500px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 15px;
+    }
+
+    .review {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        margin-bottom: 10px;
+    }
+
+    .review:last-child {
+        border-bottom: none;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+        border: none;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Review Form -->
+<div class="review-form">
+    <h2>Add a Review</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <textarea id="comment" placeholder="Enter Comment"></textarea>
+    
+    <select id="rating">
+        <option value="">Select Rating</option>
+        <option value="1">1 ★</option>
+        <option value="2">2 ★</option>
+        <option value="3">3 ★</option>
+        <option value="4">4 ★</option>
+        <option value="5">5 ★</option>
+    </select>
+
+    <button onclick="addReview()">Submit Review</button>
+</div>
+
+<!-- Reviews Display -->
+<div class="reviews-box" id="reviewsBox">
+    <h2>Reviews</h2>
+</div>
+
+<script>
+    // Load reviews from localStorage on page load
+    document.addEventListener("DOMContentLoaded", loadReviews);
+
+    function addReview() {
+        let username = document.getElementById("username").value;
+        let comment = document.getElementById("comment").value;
+        let rating = document.getElementById("rating").value;
+
+        if (username === "" || comment === "" || rating === "") {
+            alert("Please fill all fields!");
+            return;
+        }
+
+        let time = new Date().toLocaleString();
+
+        let review = {
+            username,
+            comment,
+            rating,
+            time
+        };
+
+        // Store review in localStorage
+        let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+        reviews.push(review);
+        localStorage.setItem("reviews", JSON.stringify(reviews));
+
+        // Reload reviews
+        loadReviews();
+
+        // Clear input fields
+        document.getElementById("username").value = "";
+        document.getElementById("comment").value = "";
+        document.getElementById("rating").value = "";
+    }
+
+    function loadReviews() {
+        let reviewsBox = document.getElementById("reviewsBox");
+        reviewsBox.innerHTML = "<h2>Reviews</h2>";
+
+        let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+        reviews.forEach(r => {
+            reviewsBox.innerHTML += `
+                <div class="review">
+                    <strong>${r.username}</strong> <br>
+                    Rating: ${r.rating} ★ <br>
+                    <em>${r.time}</em> <br>
+                    <p>${r.comment}</p>
+                </div>
+            `;
+        });
+    }
+</script>
+</body>
+</html>
