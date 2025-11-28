@@ -17,8 +17,11 @@ Displays:
 - Comment
   
 Time of submission
+
 Automatically loads all previous reviews on page load
+
 Clean two-column layout
+
 Scrollable review box
 
 **How It Works**
@@ -39,5 +42,3 @@ Scrollable review box
 - Download or copy the project files.
 - Open index.html in any browser.
 - Start adding reviews. They will appear instantly on the page.
-
-Scrollable review box
